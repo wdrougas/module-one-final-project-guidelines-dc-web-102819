@@ -34,16 +34,6 @@ end
 #Concert instance
 
 
-# binding.pry
-
-def get_concert_venue(n)
-    x = Concert.find_by(name: n)
-    puts x.venue.name
-end
-
-def get_concert_artist
-    ConcertArtist.all.select
-end
 
 # binding.pry
     
@@ -55,7 +45,6 @@ def concert_menu
     chosen_concert = gets.chomp
     if chosen_concert.to_i >= 1 && chosen_concert.to_i <= concerts.length
        puts "1. Tickets and Pricing, 2. Artists Performing, 3. Venue" 
-    end
     user_response = gets.chomp
     case user_response
         when '1'
@@ -69,59 +58,31 @@ def concert_menu
             puts Concert.all.venue[(chosen_concert.to_i) - 1]
         else
             puts "Invalid Entry"
+        end
     end
-    # when '2'
-    #    puts "1. Tickets and Pricing, 2. Artists Performing, 3. Venue"
-    #    user_response = gets.chomp
-    # case user_response
-    #     when '1'
-    #         puts get_concert("Summer Jam 2020")
-    #     when '2'
-    #         puts get_concert_artist("Summer Jam 2020")
-    #     when '3'
-    #         puts get_concert_venue("Summer Jam 2020")
-    #     else
-    #         puts "Invalid Entry"
-    #     end
-    # when '3'
-    #    puts "1. Tickets and Pricing, 2. Artists Performing, 3. Venue"
-    #    user_response = gets.chomp
-    # case user_response
-    #     when '1'
-    #         puts get_concert("Adele 2020 Tour")
-    #     when '2'
-    #         puts get_concert_artist("Adele 2020 Tour")
-    #     when '3'
-    #         puts get_concert_venue("Adele 2020 Tour")
-    #     else
-    #         puts "Invalid Entry"
-    #     end
-    # when '4'
-    #    puts "1. Tickets and Pricing, 2. Artists Performing, 3. Venue"
-    #    user_response = gets.chomp
-    # case user_response
-    #     when '1'
-    #         puts get_concert("SpringFest 2020")
-    #     when '2'
-    #         puts get_concert_artist("SpringFest 2020")
-    #     when '3'
-    #         puts get_concert_venue("SpringFest 2020")
-    #     else
-    #         puts "Invalid Entry"
-    #     end
-    # when '5'
-    #    puts "1. Tickets and Pricing, 2. Artists Performing, 3. Venue"
-    #    user_response = gets.chomp
-    # case user_response
-    #     when '1'
-    #         puts get_concert("FallFest 2020")
-    #     when '2'
-    #         puts get_concert_artist("FallFest 2020")
-    #     when '3'
-    #         puts get_concert_venue("FallFest 2020")
-#         else
-#             puts "Invalid Entry"
-#         end
+end
+
+def artist_menu
+    puts "Provided below are artists performing in the DC area in the next 12 months"
+    artists.name
+    chosen_artist = gets.chomp
+    if chosen_artist == 'Drake' || chosen_artist == 'Michael Jackson' || chosen_artist == 'Adele' || chosen_artist == 'Beyonce' || chosen_artist == 'Future'
+       puts "1. Concerts, 2. Venues"
+    else
+        puts 'Artist not available'
+    end  
+    user_response = gets.chomp
+    case user_response
+        when '1'
+            
+        when '2'
+            x = Concert.all[(chosen_concert.to_i) - 1].artists.map do |artist|
+                artist.name
+            end
+            puts x
+        else
+            puts "Invalid Entry"
+        end
 end
 
 
@@ -134,23 +95,9 @@ def main_menu
         when '1'
             concert_menu
         when '2'
-            #navigate to artists submenu
-            artists.name
-                puts "Please choose one of the artists."
-            artists_response = gets.chomp
-            case artists_response
-                when '1'
-                    puts "awefewf"
-            end
+            artist_menu
         when '3'
-            #navigate to venues submenu
-            venues.name
-                "Please choose one of the venues."
-            venues_response = gets.chomp
-            case venues_response
-            when '1'
-                puts "afwee"
-            end
+            venue_menu
         when '4'
             puts 'exit'
             break
