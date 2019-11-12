@@ -3,6 +3,7 @@ class CreateConcerts < ActiveRecord::Migration[6.0]
     create_table :concerts do |t|
       t.string :name
       t.integer :venue_id
+      t.integer :ticket_quantity
       t.integer :price
     end
   end

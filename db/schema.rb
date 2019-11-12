@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 4) do
   create_table "concerts", force: :cascade do |t|
     t.string "name"
     t.integer "venue_id"
+    t.integer "ticket_quantity"
     t.integer "price"
   end
 
