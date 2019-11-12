@@ -40,12 +40,12 @@ end
 #     end
 # end
 
-def exit_app
+def exit_app   
  puts "Thank you for using DC Concerts!"
 end
-def get_concert
+def get_concert(name)
     Concert.all.select do |concert|
-        concert.name == "Holiday Bash 2019"
+        concert.name == name
     end
 end
 def main_menu
@@ -63,7 +63,7 @@ def main_menu
                 when '1'
                     #puts "Holiday" #all information of Holiday Bash
                     puts "hi"
-                   print get_concert
+                   print get_concert("Holiday Bash 2019")
                 break
                 when '2'
                     puts "Summer" #all information of Summer Jam
