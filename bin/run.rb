@@ -18,6 +18,12 @@ end
 
 
 
+
+# def get_concerts(concert)
+#     Concert.all.select do |conc
+# end
+
+
 def artists
     Artist.all.each_with_index {|artist, index|
     puts "#{index+1}. #{artist.name}"}
@@ -37,7 +43,11 @@ end
 def exit_app
  puts "Thank you for using DC Concerts!"
 end
-
+def get_concert
+    Concert.all.select do |concert|
+        concert.name == "Holiday Bash 2019"
+    end
+end
 def main_menu
     while true do
         puts "Please choose one of the following:"
@@ -48,11 +58,26 @@ def main_menu
             #navigate to concerts submenu
             concerts.name
                 puts "Please choose one of the concerts."
-            concerts_response = gets.chomp
+                concerts_response = gets.chomp
             case concerts_response
                 when '1'
-                    puts "ewffawef"
-            end
+                    #puts "Holiday" #all information of Holiday Bash
+                    puts "hi"
+                   print get_concert
+                break
+                when '2'
+                    puts "Summer" #all information of Summer Jam
+                break
+                when '3'
+                    puts "Adele" #all information of Adele
+                break
+                when '4'
+                    puts "Spring" #all information of SpringFest
+                break
+                when '5'
+                    puts "Fallfest" #all information of FallFest
+                break
+                end
         when '2'
             #navigate to artists submenu
             artists.name
@@ -80,4 +105,4 @@ def main_menu
     end
 end
 
-main_menu
+welcome
