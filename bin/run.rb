@@ -16,8 +16,6 @@ def concerts
  puts "#{index+1}. #{concert.name}"}
 end
 
-
-
 def artists
     Artist.all.each_with_index {|artist, index|
     puts "#{index+1}. #{artist.name}"}
@@ -28,11 +26,6 @@ def venues
     puts "#{index+1}. #{venue.name}"}
 end
 
-# def get_concert(name)
-#     Concert.all.select do |concert|
-#         concert.name == name
-#     end
-# end
 
 def exit_app
  puts "Thank you for using DC Concerts!"
@@ -51,7 +44,7 @@ def main_menu
             concerts_response = gets.chomp
             case concerts_response
                 when '1'
-                    puts "ewffawef"
+                    
             end
         when '2'
             #navigate to artists submenu
@@ -80,4 +73,4 @@ def main_menu
     end
 end
 
-main_menu
+welcome
