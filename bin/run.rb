@@ -11,7 +11,23 @@ puts ''
  main_menu
 end
 
+def Concert.most_expensive_concert
+    Concert.all.max_by do |concert|
+        concert.price
+    end
+end
 
+def Artist.most_concerts
+    #number of concert of each artist return highest concert count
+
+end
+binding.pry
+
+def find_artist
+    Artist.all.find do |artist|
+        artist.name == self
+    end
+end
 
 
 def artists
@@ -81,6 +97,7 @@ def artist_menu
                 artist_concerts = Artist.all[(chosen_artist.to_i) - 1].concerts
                 x = artist_concerts.map do |artist_concert|
                     {"Concert Name" => artist_concert.name,
+                     "Date" => artist_concert.date,
                     "Ticket Quantity" => artist_concert.ticket_quantity,
                     "Ticket Price" => artist_concert.price}
                 end
@@ -136,7 +153,7 @@ def concert_menu
        puts ''
        puts ''
        puts ''
-       puts "1. Tickets and Pricing 2. Artists Performing 3. Venue" 
+       puts "1. Date, Tickets and Pricing 2. Artists Performing 3. Venue" 
        puts ''
        puts ''
        puts ''
@@ -146,6 +163,7 @@ def concert_menu
             puts ''
             x = Concert.all[(chosen_concert.to_i) - 1].name
             concert_instance = Concert.find_by name: x
+            puts "Date - #{concert_instance.date}"
             puts "Ticket Quantity - #{concert_instance.ticket_quantity}"
             puts "Ticket Price - #{concert_instance.price}"
             puts ''
@@ -206,7 +224,17 @@ def venue_menu
         when '3'
             puts ''
             venue_concerts = Venue.all[(chosen_venue.to_i) - 1].concerts
-            # end
+            x = venue_concerts.map do |venue_concert|
+                {"Concert" => venue_concert.name,
+                "Ticket Quantity" => venue_concert.ticket_quantity,
+                "Ticket Price" => venue_concert.price,
+                "Date" => venue_concert.date}
+            end
+            x.each do |x|
+                x.each do |key, value|
+                   puts "#{key} - #{value}"
+                end
+            end
         when '4'
             exit
         end
