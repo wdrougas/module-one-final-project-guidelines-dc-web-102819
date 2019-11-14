@@ -20,7 +20,7 @@ u_street = Venue.create(:name=>'U Street Music Hall', :street_address=>'1115A U 
 
 
 holiday_bash = Concert.create(:name=>'Holiday Bash 2019', :venue_id=> concert_hall.id, :ticket_quantity=> 200, :price=> 100)
-summer_jam = Concert.create(:name=>'Summer Jam 2020', :venue_id=> u_street.id, :ticket_quantity=> 80, :price=> 200)
+summer_jam = Concert.create(:name=>'Summer Jam 2020', :venue_id=> boogie_hall.id, :ticket_quantity=> 80, :price=> 200)
 adele_tour = Concert.create(:name=>'Adele 2020 Tour', :venue_id=> warner_theatre.id, :ticket_quantity=> 74, :price=> 50)
 spring_fest = Concert.create(:name=>'SpringFest 2020', :venue_id=> echostage.id, :ticket_quantity=> 137, :price=> 75)
 fall_fest = Concert.create(:name=>'FallFest 2020', :venue_id=> u_street.id, :ticket_quantity=> 140, :price=> 80)
@@ -42,4 +42,4 @@ ac13 = ConcertArtist.create(:concert_id=> fall_fest.id, :artist_id=> adele.id)
 ac14 = ConcertArtist.create(:concert_id=> fall_fest.id, :artist_id=> future.id)
 
 
-binding.pry
+# binding.pry

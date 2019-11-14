@@ -36,7 +36,7 @@ end
 
 def main_menu
     while true do
-        puts "Please choose one of the following:"
+        puts "Please select one of the following:"
         puts ''
         puts "1. Concerts, 2. Artists, 3. Venues, 4. Exit"
         puts ''
@@ -63,8 +63,10 @@ def artist_menu
     puts ''
     artists
     puts ''
-    puts "Please select one of these artist"
-    puts ""
+    puts "Please select one of the following:"
+    puts ''
+    puts ''
+    puts ''
     while true do
         puts ""
         chosen_artist = gets.chomp
@@ -97,6 +99,7 @@ def artist_menu
                     "Venue Street Address"=>artist_venue.street_address,
                     "Venue Zip Code" => artist_venue.zip}
                 end
+                # x here is an array of hashes
                 x.each do |x|
                     x.each do |key, value|
                         puts "#{key} - #{value}"
@@ -124,11 +127,18 @@ def concert_menu
     concerts
     puts ''
     puts "Please choose one of the concerts."
+    puts ''
+    while true do
     chosen_concert = gets.chomp
     # binding.pry
     if chosen_concert.to_i >= 1 && chosen_concert.to_i <= Concert.all.length
-    puts ''
-       puts "1. Tickets and Pricing, 2. Artists Performing, 3. Venue" 
+       puts ''
+       puts ''
+       puts ''
+       puts ''
+       puts "1. Tickets and Pricing 2. Artists Performing 3. Venue" 
+       puts ''
+       puts ''
        puts ''
     user_response = gets.chomp
     case user_response
@@ -154,7 +164,13 @@ def concert_menu
         else
             puts "Invalid Entry"
         end
+        puts ''
+        puts "Return to Main Menu"
+        puts ''
+        puts ''
+        break
     end
+end
 end
 
 
@@ -164,7 +180,7 @@ def venue_menu
     puts ''
     venues
     puts ''
-    puts "Please select one of the venues"
+    puts "Please select one of the following:"
     while true do
         puts ""
         chosen_venue = gets.chomp
@@ -181,9 +197,16 @@ def venue_menu
             puts "Zip Code - #{Venue.all[(chosen_venue.to_i) - 1].zip}"
         when '2'
             puts ''
-            Venue.all[(chosen_venue.to_i) - 1].artists
-            binding.pry
+            venue_artists = Venue.all[(chosen_venue.to_i) - 1].artists
+            artists_name = venue_artists.map do |venue_artist|
+                    venue_artist.name
+                end
+                puts artists_name
             break
+        when '3'
+            puts ''
+            venue_concerts = Venue.all[(chosen_venue.to_i) - 1].concerts
+            # end
         when '4'
             exit
         end
