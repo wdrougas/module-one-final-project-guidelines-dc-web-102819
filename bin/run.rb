@@ -5,11 +5,19 @@ require 'pry'
 
 
 def welcome
-puts ''
+puts '
+I CAN’T LIVE WITHOUT
+╔══════╦═╗╔═╦═══╦═╦═══╗
+║░╔╗╔╗░║░║║░║╚══╣░║░╔═╝
+║░║╚╝║░║░╚╝░╠══╗║░║░╚═╗
+╚═╝░░╚═╩════╩═══╩═╩═══╝
+¸.•*¨*•♫♪¸.•*¨*•♫♪¸.•*¨*•♫♪¸.•*¨*•♫♪'
+ puts ''
  puts "Welcome to DC Concerts! Your source for shows, artists, and venues in the DC area!" #entry point
  puts ''
  main_menu
 end
+
 
 def Concert.most_expensive_concert
     Concert.all.max_by do |concert|
@@ -17,11 +25,12 @@ def Concert.most_expensive_concert
     end
 end
 
-def Artist.most_concerts
-    #number of concert of each artist return highest concert count
-
+def Venue.most_concert
+    
 end
-binding.pry
+
+
+
 
 def find_artist
     Artist.all.find do |artist|

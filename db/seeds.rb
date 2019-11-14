@@ -10,6 +10,7 @@ mj = Artist.create(:name=>'Michael Jackson')
 beyonce = Artist.create(:name=>'Beyonce')
 adele = Artist.create(:name=>'Adele')
 future = Artist.create(:name=>'Future')
+ab = Artist.create(:name => 'Andrea Bocelli')
 
 
 concert_hall = Venue.create(:name=>'Concert Hall', :street_address=>'1234 Main Street', :zip=>20005)
@@ -24,6 +25,7 @@ summer_jam = Concert.create(:name=>'Summer Jam 2020', :venue_id=> boogie_hall.id
 adele_tour = Concert.create(:name=>'Adele 2020 Tour', :venue_id=> warner_theatre.id, :ticket_quantity=> 74, :price=> 50, :date=> "February 14, 2020 - 8pm")
 spring_fest = Concert.create(:name=>'SpringFest 2020', :venue_id=> echostage.id, :ticket_quantity=> 137, :price=> 75, :date=> "April 28, 2020 - 2pm")
 fall_fest = Concert.create(:name=>'FallFest 2020', :venue_id=> u_street.id, :ticket_quantity=> 140, :price=> 80, :date=> "October 15, 2020 - 12pm")
+andrea_bocelli = Concert.create(:name=>'Andrea Bocelli in DC', :venue_id=> u_street.id, :ticket_quantity=> 20, :price=> 1000, :date=> "December 15, 2019 - 9pm")
 
 
 ac1 = ConcertArtist.create(:concert_id=> holiday_bash.id, :artist_id=> drake.id)
@@ -40,6 +42,7 @@ ac11 = ConcertArtist.create(:concert_id=> fall_fest.id, :artist_id=> mj.id)
 ac12 = ConcertArtist.create(:concert_id=> fall_fest.id, :artist_id=> beyonce.id)
 ac13 = ConcertArtist.create(:concert_id=> fall_fest.id, :artist_id=> adele.id)
 ac14 = ConcertArtist.create(:concert_id=> fall_fest.id, :artist_id=> future.id)
+ac15 = ConcertArtist.create(:concert_id=> andrea_bocelli.id, :artist_id=> ab.id)
 
 
 # binding.pry
