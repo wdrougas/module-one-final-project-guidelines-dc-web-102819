@@ -25,11 +25,16 @@ def Concert.most_expensive_concert
     end
 end
 
-def Venue.most_concert
-    
+
+def Concert.dates
+    concert_dates = Concert.all.map do |x|
+        {"Concert" => x.name,
+        "Date" => x.date}
+    end
 end
 
-
+p Concert.dates
+binding.pry
 
 
 def find_artist
