@@ -60,65 +60,49 @@ end
 def artist_menu
     puts ''
     puts "Provided below are artists performing in the DC area in the next 12 months"
-    
+    puts ''
+    artists
+    puts ''
     puts "Please select one of these artist"
     puts ""
     while true do
-        puts "'Drake', 'Michael Jackson', 'Adele', 'Beyonce', 'Future' **(case sensitive)"
         puts ""
         chosen_artist = gets.chomp
-        if chosen_artist == 'Drake' || chosen_artist == 'Michael Jackson' || chosen_artist == 'Adele' || chosen_artist == 'Beyonce' || chosen_artist == 'Future'
+        if chosen_artist.to_i >= 1 && chosen_artist.to_i <= Artist.all.length
+        puts ''
         puts "1. Concerts, 2. Venues 3. Exit"
             user_response = gets.chomp
             puts ""
             case user_response
             when '1'
-                puts "Concerts"
-                puts ""
-                artist_name = Artist.where("name = ?", chosen_artist)
-                artist_id = artist_name[0].id    
-                concert_artist = ConcertArtist.where("artist_id = ?", artist_id)
-                # binding.pry
-                results = concert_artist.map do |concert_artist|
-                    {"Concert Name" => concert_artist.concert.name,
-                    "Ticket Price" => concert_artist.concert.price,
-                    "Ticket Quantity" => concert_artist.concert.ticket_quantity}
-                end
-                results.each do |result|
-                    result.each do |key, value|
-                        puts "#{key} - #{value}"
-                    end
-                    puts ''
-                end
-                puts ""
-                puts "Moved to first page"
-                puts ""
-                break
-
-            when '2'
-                puts "Venues"
                 puts ''
-                artist_name = Artist.where("name = ?", chosen_artist)
-                artist_id = artist_name[0].id    
-                concert_artist = ConcertArtist.where("artist_id = ?", artist_id)
-                concert = concert_artist.map do |concert_artist|
-                    concert_artist.concert
+                artist_concerts = Artist.all[(chosen_artist.to_i) - 1].concerts
+                x = artist_concerts.map do |artist_concert|
+                    {"Concert Name" => artist_concert.name,
+                    "Ticket Quantity" => artist_concert.ticket_quantity,
+                    "Ticket Price" => artist_concert.price}
                 end
-                chosen_venues = concert.map do |concert|
-                    {"Venue Name" => concert.venue.name,
-                    "Venue Street Address" => concert.venue.street_address,
-                    "Venue Zip Code" =>concert.venue.zip}
+                x.each do |x|
+                    x.each do |key,value|
+                    puts "#{key} - #{value}"
+                    end
+                    puts ""
                 end
-                chosen_venues.each do |chosen_venue|
-                    chosen_venue.each do |key, value|
+                break
+            when '2'
+                puts ''                         
+                artist_venue = Artist.all[(chosen_artist.to_i) - 1].venues
+                x = artist_venue.map do |artist_venue|
+                    {"Venue Name"=> artist_venue.name,
+                    "Venue Street Address"=>artist_venue.street_address,
+                    "Venue Zip Code" => artist_venue.zip}
+                end
+                x.each do |x|
+                    x.each do |key, value|
                         puts "#{key} - #{value}"
                     end
                     puts ''
                 end
-                puts ""
-                puts "Moved to Main Menu"
-                puts ""
-                break
             when '3'
                 puts "Moved to Main Menu"
                 break
@@ -137,31 +121,36 @@ end
 
 def concert_menu
     puts ''
-    concerts()
+    concerts
     puts ''
     puts "Please choose one of the concerts."
     chosen_concert = gets.chomp
     # binding.pry
     if chosen_concert.to_i >= 1 && chosen_concert.to_i <= Concert.all.length
-        puts ''
+    puts ''
        puts "1. Tickets and Pricing, 2. Artists Performing, 3. Venue" 
        puts ''
     user_response = gets.chomp
     case user_response
         when '1'
             puts ''
-            puts Concert.all[(chosen_concert.to_i) - 1]
+            x = Concert.all[(chosen_concert.to_i) - 1].name
+            concert_instance = Concert.find_by name: x
+            puts "Ticket Quantity - #{concert_instance.ticket_quantity}"
+            puts "Ticket Price - #{concert_instance.price}"
+            puts ''
         when '2'
             puts ''
-            x = Concert.all[(chosen_concert.to_i) - 1].artists.map do |artist|
+            artists_performing = Concert.all[(chosen_concert.to_i) - 1].artists.map do |artist|
                 artist.name
             end
-            puts x
+            puts artists_performing
         when '3'
             puts ''
-            puts Concert.all[(chosen_concert.to_i) - 1].venue
-            # binding.pry
-
+            concert_venue = Concert.all[(chosen_concert.to_i) - 1].venue
+            puts "Name - #{concert_venue.name}"
+            puts "Street Address - #{concert_venue.street_address}"
+            puts "Zip Code - #{concert_venue.zip}"
         else
             puts "Invalid Entry"
         end
@@ -188,12 +177,13 @@ def venue_menu
         case user_response
         when '1'
             puts ''
-            puts Venue.all[(chosen_venue.to_i) - 1].street_address
-            puts Venue.all[(chosen_venue.to_i) - 1].zip
+            puts "Street Address - #{Venue.all[(chosen_venue.to_i) - 1].street_address}"
+            puts "Zip Code - #{Venue.all[(chosen_venue.to_i) - 1].zip}"
         when '2'
             puts ''
-            artists_names = Venue.all[(chosen_venue.to_i) - 1].artists
+            Venue.all[(chosen_venue.to_i) - 1].artists
             binding.pry
+            break
         when '4'
             exit
         end
