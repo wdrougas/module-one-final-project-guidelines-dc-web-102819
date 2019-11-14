@@ -8,5 +8,16 @@ class Artist < ActiveRecord::Base
             concert.venue
         end
     end
+
+    def artist_number_of_concerts
+        self.concerts.count
+    end
+
+    def Artist.most_concerts
+        self.all.max_by do |artist|
+            artist.artist_number_of_concerts
+        end
+    end
+
     
 end
