@@ -40,10 +40,56 @@ def Venue.most_concerts
     venue_concerts.name
 end
 
+def Concert.start_dates
+    start_date = Concert.all.map do |x|
+     {"Concert" => x.name,
+        "Date" => x.date}
+    end
+    start_date.each do |start_date|
+        start_date.each do |key, value|
+            puts "#{key} - #{value}"
+        end
+        puts ''
+    end
+    nil
+ end
+
 # binding.pry
 
-
-
+def statistics_menu
+    puts ''
+    puts "Please choose one of the statistics"
+    puts ''
+    puts "1. Most Expensive Concert 2. Artist with most concerts 3. Venue with most concerts 4. Concert Dates"
+    puts ''
+    while true do
+        user_response = gets.chomp
+            if user_response.to_i >= 1 && user_response.to_i <= 4
+            case user_response
+            when '1'
+                puts ''
+                puts Concert.most_expensive_concert
+                puts ''
+                break
+            when '2'
+                puts ''
+                puts Artist.most_concerts
+                puts ''
+                break
+            when '3'
+                puts ''
+                puts Venue.most_concerts
+                puts ''
+                break
+            when '4'
+                puts ''
+                puts Concert.start_dates
+                puts ''
+                break
+            end
+        end
+    end
+end
 
 def find_artist
     Artist.all.find do |artist|
