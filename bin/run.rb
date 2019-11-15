@@ -58,9 +58,14 @@ def Concert.start_dates
 
 def statistics_menu
     puts ''
+    puts ''
+    puts ''
     puts "Please choose one of the statistics"
     puts ''
+    puts ''
+    puts ''
     puts "1. Most Expensive Concert 2. Artist with most concerts 3. Venue with most concerts 4. Concert Dates"
+    puts ''
     puts ''
     while true do
         user_response = gets.chomp
@@ -68,28 +73,49 @@ def statistics_menu
             case user_response
             when '1'
                 puts ''
+                puts ''
+                puts ''
                 puts Concert.most_expensive_concert
                 puts ''
-                break
+                puts ''
+                puts ''
             when '2'
+                puts ''
+                puts ''
                 puts ''
                 puts Artist.most_concerts
                 puts ''
-                break
+                puts ''
+                puts ''
             when '3'
+                puts ''
+                puts ''
                 puts ''
                 puts Venue.most_concerts
                 puts ''
-                break
+                puts ''
+                puts ''
             when '4'
                 puts ''
                 puts Concert.start_dates
                 puts ''
-                break
+            else
+                puts "Invalid Entry"
             end
+            puts "Press 1 to return to main menu"
+            puts ''
+            user_response = gets.chomp
+            case user_response
+            when '1'
+                puts ''
+                puts ''
+                puts ''
+               main_menu
+            end
+            puts ''
         end
     end
-end
+    end
 
 def find_artist
     Artist.all.find do |artist|
@@ -157,13 +183,17 @@ def concert_menu
        puts ''
        puts ''
        puts ''
-       puts "1. Date, Tickets and Pricing 2. Artists Performing 3. Venue" 
+       puts "1. Date, Tickets, and Pricing 2. Artists Performing 3. Venue" 
+       puts ''
+       puts ''
        puts ''
        puts ''
        puts ''
     user_response = gets.chomp
     case user_response
         when '1'
+            puts ''
+            puts ''
             puts ''
             x = Concert.all[(chosen_concert.to_i) - 1].name
             concert_instance = Concert.find_by name: x
@@ -173,11 +203,15 @@ def concert_menu
             puts ''
         when '2'
             puts ''
+            puts ''
+            puts ''
             artists_performing = Concert.all[(chosen_concert.to_i) - 1].artists.map do |artist|
                 artist.name
             end
             puts artists_performing
         when '3'
+            puts ''
+            puts ''
             puts ''
             concert_venue = Concert.all[(chosen_concert.to_i) - 1].venue
             puts "Name - #{concert_venue.name}"
@@ -187,10 +221,18 @@ def concert_menu
             puts "Invalid Entry"
         end
         puts ''
-        puts "Return to Main Menu"
         puts ''
+        puts "Press 1 to return to main menu"
         puts ''
-        break
+        user_response = gets.chomp
+        case user_response
+        when '1'
+            puts ''
+            puts ''
+            puts ''
+           main_menu
+        end
+        puts ''
     end
 end
 end
@@ -202,15 +244,17 @@ def artist_menu
     artists
     puts ''
     puts "Please select one of the following:"
-    puts ''
-    puts ''
-    puts ''
     while true do
         puts ""
         chosen_artist = gets.chomp
         if chosen_artist.to_i >= 1 && chosen_artist.to_i <= Artist.all.length
         puts ''
-        puts "1. Concerts, 2. Venues 3. Exit"
+        puts ''
+        puts ''
+        puts "1. Concerts, 2. Venues"
+        puts ''
+        puts ''
+        puts ''
             user_response = gets.chomp
             puts ""
             case user_response
@@ -229,7 +273,6 @@ def artist_menu
                     end
                     puts ""
                 end
-                break
             when '2'
                 puts ''                         
                 artist_venue = Artist.all[(chosen_artist.to_i) - 1].venues
@@ -245,19 +288,24 @@ def artist_menu
                     end
                     puts ''
                 end
-            when '3'
-                puts "Moved to Main Menu"
-                break
             else
                 puts "Invalid Entry"
             end
-        else
-            puts ""
-            puts 'Artist not available'
-            puts "Please input correct the artist."
-            puts ""
+        puts ''
+        puts ''
+        puts "Press 1 to return to main menu"
+        puts ''
+        user_response = gets.chomp
+        case user_response
+        when '1'
+            puts ''
+            puts ''
+            puts ''
+           main_menu
         end
+        puts ''
     end
+end
 end
 
 
@@ -273,15 +321,26 @@ def venue_menu
         chosen_venue = gets.chomp
         if chosen_venue.to_i >= 1 && chosen_venue.to_i <= Venue.all.length
            puts ''
-           puts "1. Location, 2. Artists Performing, 3. Concerts, 4. Exit" 
+           puts ''
+           puts ''
+           puts "1. Location, 2. Artists Performing, 3. Concerts" 
+           puts ''
+           puts ''
+           puts ''
            puts ''
         end
         user_response = gets.chomp
         case user_response
         when '1'
             puts ''
+            puts ''
+            puts ''
             puts "Street Address - #{Venue.all[(chosen_venue.to_i) - 1].street_address}"
             puts "Zip Code - #{Venue.all[(chosen_venue.to_i) - 1].zip}"
+            puts ''
+            puts ''
+            puts ''
+            puts ''
         when '2'
             puts ''
             venue_artists = Venue.all[(chosen_venue.to_i) - 1].artists
@@ -289,7 +348,6 @@ def venue_menu
                     venue_artist.name
                 end
                 puts artists_name
-            break
         when '3'
             puts ''
             venue_concerts = Venue.all[(chosen_venue.to_i) - 1].concerts
@@ -304,11 +362,25 @@ def venue_menu
                    puts "#{key} - #{value}"
                 end
             end
-        when '4'
-            exit
+        else
+            puts "Invalid Entry"
         end
+    puts ''
+    puts ''
+    puts "Press 1 to return to main menu"
+    puts ''
+    user_response = gets.chomp
+    case user_response
+    when '1'
+        puts ''
+        puts ''
+        puts ''
+       main_menu
     end
+    puts ''
 end
+end
+
 
 
 welcome
