@@ -12,6 +12,10 @@ Contributor's Guide
 - Please provide feedback or suggestions
 
 Install Instructions
-- 
+1. Fork it ( https://github.com/wdrougas/module-one-final-project-guidelines-dc-web-102819 )
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am ‘Add some feature’)
+4. Push to the branch (git push origin my-new-feature)
+5. Create a new Pull Request
 
 
