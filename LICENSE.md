@@ -29,6 +29,7 @@ Copyright (c) 2015 Piotr Murach
 
 
 https://github.com/piotrmurach/tty-prompt/blob/master/LICENSE.txt
+
 MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining
