@@ -143,7 +143,9 @@ def venues
 end
 
 def exit_app   
+ puts ''
  puts "Thank you for using DC concerts!"
+ puts ''
 end
 
 def prompt
@@ -151,7 +153,8 @@ def prompt
 end
 
 def main_menu
-   while true do
+    my_awesome_variable = true
+   while my_awesome_variable do
        prompt
        response = prompt.select('Please select one of the following: ') do |menu|
            menu.default 1
@@ -161,6 +164,7 @@ def main_menu
            menu.choice 'Statistics', 4
            menu.choice 'Exit', 5
        end
+
         case response
         when 1
             concert_menu
@@ -172,9 +176,11 @@ def main_menu
             statistics_menu
         when 5
             exit_app
-            break
-        else 
-            puts "Invalid entry"
+            # binding.pry
+            # else 
+            #     puts "Invalid entry"
+            my_awesome_variable = false
+
         end
     end
 end
@@ -234,13 +240,13 @@ def concert_menu
         puts ''
         puts "Press 1 to return to main menu"
         puts ''
-        user_response = gets.chomp
-        case user_response
+        user_response1 = gets.chomp
+        case user_response1
         when '1'
             puts ''
             puts ''
             puts ''
-           main_menu
+           welcome
         end
         puts ''
     end
