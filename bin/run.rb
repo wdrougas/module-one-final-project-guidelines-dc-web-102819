@@ -6,7 +6,9 @@ prompt = TTY::Prompt.new
 require 'colorized_string'
 
 
-
+def prompt
+    prompt = TTY::Prompt.new
+end
 
 def welcome
 puts ColorizedString.new('
@@ -22,144 +24,20 @@ I CAN’T LIVE WITHOUT
  main_menu
 end
 
-
-def Concert.most_expensive_concert
-    pricey_concert = Concert.all.max_by do |concert|
-        concert.price
-    end
-    pricey_concert.name
-end
-
-def Artist.most_concerts
-    artist_concerts = self.all.max_by do |artist|
-        artist.artist_number_of_concerts
-    end
-    artist_concerts.name
-end
-
-def Venue.most_concerts
-    venue_concerts = self.all.max_by do |venue|
-        venue.venue_number_of_concerts
-    end
-    venue_concerts.name
-end
-
-def Concert.start_dates
-    start_date = Concert.all.map do |x|
-     {"Concert" => x.name,
-        "Date" => x.date}
-    end
-    start_date.each do |start_date|
-        start_date.each do |key, value|
-            puts "#{key} - #{value}"
-        end
-        puts ''
-    end
-    nil
- end
-
-# binding.pry
-
-def statistics_menu
-    puts ''
-    puts ''
-    puts ''
-    puts ColorizedString.new("Please choose one of the statistics").colorize(:yellow)
-    puts ''
-    puts ''
-    puts ''
-    puts "1. Most Expensive Concert 2. Artist with most concerts 3. Venue with most concerts 4. Concert Dates"
-    puts ''
-    puts ''
-    while true do
-        user_response = gets.chomp
-            if user_response.to_i >= 1 && user_response.to_i <= 4
-            case user_response
-            when '1'
-                puts ''
-                puts ''
-                puts ''
-                puts Concert.most_expensive_concert
-                puts ''
-                puts ''
-                puts ''
-            when '2'
-                puts ''
-                puts ''
-                puts ''
-                puts Artist.most_concerts
-                puts ''
-                puts ''
-                puts ''
-            when '3'
-                puts ''
-                puts ''
-                puts ''
-                puts Venue.most_concerts
-                puts ''
-                puts ''
-                puts ''
-            when '4'
-                puts ''
-                puts Concert.start_dates
-                puts ''
-            else
-                puts "Invalid Entry"
-            end
-            puts "Press 1 to return to main menu"
-            puts ''
-            user_response = gets.chomp
-            case user_response
-            when '1'
-                puts ''
-                puts ''
-                puts ''
-               main_menu
-            end
-            puts ''
-        end
-    end
-    end
-
-def find_artist
-    Artist.all.find do |artist|
-        artist.name == self
-    end
-end
-
-
-def artists
-    Artist.all.each_with_index {|artist, index|
-    puts "#{index+1}. #{artist.name}"}
-end
-
-def concerts
-    Concert.all.each_with_index do |concert, index|
-        puts "#{index+1}. #{concert.name}"
-    end
-end
-
-def venues
-    Venue.all.each_with_index {|venue, index|
-    puts "#{index+1}. #{venue.name}"}
-end
-
 def exit_app   
  puts ''
  puts "Thank you for using DC concerts!"
  puts ''
 end
 
-def prompt
-    prompt = TTY::Prompt.new
-end
 
 def main_menu
     my_awesome_variable = true
    while my_awesome_variable do
        prompt
-       response = prompt.select('Please select one of the following: ') do |menu|
+       response = prompt.select(ColorizedString.new('Please select one of the following: ').colorize(:yellow)) do |menu|
            menu.default 1
+           puts ''
            menu.choice 'Concerts', 1
            menu.choice 'Artists', 2
            menu.choice 'Venues', 3
@@ -191,7 +69,7 @@ def concert_menu
     puts ''
     concerts
     puts ''
-    puts ColorizedString.new("Please choose one of the concerts.").colorize(:yellow)
+    puts ColorizedString.new("Please choose one of the concerts: ").colorize(:yellow)
     puts ''
     while true do
     chosen_concert = gets.chomp
@@ -238,6 +116,20 @@ def concert_menu
         else
             puts "Invalid Entry"
         end
+        # puts ''
+        # puts ''
+        # puts "Press 1 to return to main menu"
+        # puts ''
+        # user_response1 = gets.chomp
+        # case user_response1
+        # when '1'
+        #     puts ''
+        #     puts ''
+        #     puts ''
+        #    return welcome
+        # end
+        # puts ''
+        end
         puts ''
         puts ''
         puts "Press 1 to return to main menu"
@@ -253,15 +145,14 @@ def concert_menu
         puts ''
     end
 end
-end
 
 def artist_menu
     puts ''
-    puts "Provided below are artists performing in the DC area in the next 12 months"
+    puts ColorizedString.new("Provided below are artists performing in the DC area in the next 12 months").colorize(:light_blue)
     puts ''
     artists
     puts ''
-    puts "Please select one of the following:"
+    puts ColorizedString.new("Please choose one of the artists: ").colorize(:light_blue)
     while true do
         puts ""
         chosen_artist = gets.chomp
@@ -309,6 +200,7 @@ def artist_menu
             else
                 puts "Invalid Entry"
             end
+        end
         puts ''
         puts ''
         puts "Press 1 to return to main menu"
@@ -319,21 +211,20 @@ def artist_menu
             puts ''
             puts ''
             puts ''
-           main_menu
+           return welcome
         end
         puts ''
     end
-end
 end
 
 
 def venue_menu
     puts ''
-    puts "Provided below are venues in the DC area."
+    puts ColorizedString.new("Provided below are venues in the DC area.").colorize(:cyan)
     puts ''
     venues
     puts ''
-    puts "Please select one of the following:"
+    puts ColorizedString.new("Please select one of the following:").colorize(:cyan)
     while true do
         puts ""
         chosen_venue = gets.chomp
@@ -379,26 +270,149 @@ def venue_menu
                 x.each do |key, value|
                    puts "#{key} - #{value}"
                 end
+                puts ''
             end
         else
             puts "Invalid Entry"
         end
-    puts ''
-    puts ''
-    puts "Press 1 to return to main menu"
-    puts ''
-    user_response = gets.chomp
-    case user_response
-    when '1'
         puts ''
         puts ''
+        puts "Press 1 to return to main menu"
         puts ''
-       main_menu
+        user_response = gets.chomp
+        case user_response
+        when '1'
+            puts ''
+            puts ''
+            puts ''
+           return welcome
+        end
+        puts ''
     end
+end
+
+def statistics_menu
     puts ''
-end
+    puts ''
+    puts ''
+    puts ColorizedString.new("Please choose one of the statistics").colorize(:yellow)
+    puts ''
+    puts ''
+    puts ''
+    puts "1. Most Expensive Concert 2. Artist with most concerts 3. Venue with most concerts 4. Concert Dates"
+    puts ''
+    puts ''
+    while true do
+        user_response = gets.chomp
+            if user_response.to_i >= 1 && user_response.to_i <= 4
+            case user_response
+            when '1'
+                puts ''
+                puts ''
+                puts ''
+                puts Concert.most_expensive_concert
+                puts ''
+                puts ''
+                puts ''
+            when '2'
+                puts ''
+                puts ''
+                puts ''
+                puts Artist.most_concerts
+                puts ''
+                puts ''
+                puts ''
+            when '3'
+                puts ''
+                puts ''
+                puts ''
+                puts Venue.most_concerts
+                puts ''
+                puts ''
+                puts ''
+            when '4'
+                puts ''
+                puts Concert.start_dates
+                puts ''
+            else
+                puts "Invalid Entry"
+            end
+        end
+        puts "Press 1 to return to main menu"
+        puts ''
+        user_response = gets.chomp
+        case user_response
+        when '1'
+            puts ''
+            puts ''
+            puts ''
+           return welcome
+        end
+        puts ''
+    end
 end
 
 
+def Concert.most_expensive_concert
+    pricey_concert = Concert.all.max_by do |concert|
+        concert.price
+    end
+    pricey_concert.name
+end
+
+def Artist.most_concerts
+    artist_concerts = self.all.max_by do |artist|
+        artist.artist_number_of_concerts
+    end
+    artist_concerts.name
+end
+
+def Venue.most_concerts
+    venue_concerts = self.all.max_by do |venue|
+        venue.venue_number_of_concerts
+    end
+    venue_concerts.name
+end
+
+def Concert.start_dates
+    start_date = Concert.all.map do |x|
+     {"Concert" => x.name,
+        "Date" => x.date}
+    end
+    start_date.each do |start_date|
+        start_date.each do |key, value|
+            puts "#{key} - #{value}"
+        end
+        puts ''
+    end
+    nil
+ end
+
+# binding.pry
+
+
+
+def find_artist
+    Artist.all.find do |artist|
+        artist.name == self
+    end
+end
+
+
+def artists
+    Artist.all.each_with_index {|artist, index|
+    puts "#{index+1}. #{artist.name}"}
+end
+
+def concerts
+    Concert.all.each_with_index do |concert, index|
+        puts "#{index+1}. #{concert.name}"
+    end
+end
+
+def venues
+    Venue.all.each_with_index {|venue, index|
+    puts "#{index+1}. #{venue.name}"}
+end
 
 welcome
