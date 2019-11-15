@@ -11,7 +11,7 @@ Is U Street Music Hall down the street from you? You can find out when they are 
 Contributor's Guide
 - Please provide feedback or suggestions
 
-Install Instrutions
+Install Instructions
 - 
 
 
