@@ -9,4 +9,6 @@ gem "rake"
 # gem 'catpix'
 # gem 'rmagick'
 gem 'tty-prompt'
+gem 'colorize', '~> 0.8.1'
+
 

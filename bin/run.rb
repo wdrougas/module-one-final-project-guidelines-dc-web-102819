@@ -3,19 +3,21 @@ require_relative '../lib/command_line_interface.rb'
 require 'pry'
 require 'tty-prompt'
 prompt = TTY::Prompt.new
+require 'colorized_string'
+
 
 
 
 def welcome
-puts '
+puts ColorizedString.new('
 I CAN’T LIVE WITHOUT
 ╔══════╦═╗╔═╦═══╦═╦═══╗
 ║░╔╗╔╗░║░║║░║╚══╣░║░╔═╝
 ║░║╚╝║░║░╚╝░╠══╗║░║░╚═╗
 ╚═╝░░╚═╩════╩═══╩═╩═══╝
-¸.•*¨*•♫♪¸.•*¨*•♫♪¸.•*¨*•♫♪¸.•*¨*•♫♪'
+¸.•*¨*•♫♪¸.•*¨*•♫♪¸.•*¨*•♫♪¸.•*¨*•♫♪').colorize(:blue)
  puts ''
- puts "Welcome to DC Concerts! Your source for shows, artists, and venues in the DC area!" #entry point
+ puts ColorizedString.new("Welcome to DC Concerts! Your source for shows, artists, and venues in the DC area!").colorize(:red)
  puts ''
  main_menu
 end
@@ -62,7 +64,7 @@ def statistics_menu
     puts ''
     puts ''
     puts ''
-    puts "Please choose one of the statistics"
+    puts ColorizedString.new("Please choose one of the statistics").colorize(:yellow)
     puts ''
     puts ''
     puts ''
@@ -189,7 +191,7 @@ def concert_menu
     puts ''
     concerts
     puts ''
-    puts "Please choose one of the concerts."
+    puts ColorizedString.new("Please choose one of the concerts.").colorize(:yellow)
     puts ''
     while true do
     chosen_concert = gets.chomp
@@ -246,7 +248,7 @@ def concert_menu
             puts ''
             puts ''
             puts ''
-           welcome
+           return welcome
         end
         puts ''
     end
