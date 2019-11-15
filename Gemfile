@@ -8,4 +8,5 @@ gem "require_all"
 gem "rake"
 # gem 'catpix'
 # gem 'rmagick'
+gem 'tty-prompt'
 

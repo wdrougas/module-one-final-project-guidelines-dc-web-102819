@@ -1,6 +1,8 @@
 require_relative '../config/environment'
 require_relative '../lib/command_line_interface.rb'
 require 'pry'
+require 'tty-prompt'
+prompt = TTY::Prompt.new
 
 
 
@@ -144,23 +146,31 @@ def exit_app
  puts "Thank you for using DC concerts!"
 end
 
+def prompt
+    prompt = TTY::Prompt.new
+end
+
 def main_menu
-    while true do
-        puts "Please select one of the following:"
-        puts ''
-        puts "1. Concerts, 2. Artists, 3. Venues, 4. Statistics 5. Exit"
-        puts ''
-        response = gets.chomp
+   while true do
+       prompt
+       response = prompt.select('Please select one of the following: ') do |menu|
+           menu.default 1
+           menu.choice 'Concerts', 1
+           menu.choice 'Artists', 2
+           menu.choice 'Venues', 3
+           menu.choice 'Statistics', 4
+           menu.choice 'Exit', 5
+       end
         case response
-        when '1'
+        when 1
             concert_menu
-        when '2'
+        when 2
             artist_menu
-        when '3'
+        when 3
             venue_menu
-        when '4'
+        when 4
             statistics_menu
-        when '5'
+        when 5
             exit_app
             break
         else 
