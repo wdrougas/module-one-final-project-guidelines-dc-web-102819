@@ -132,7 +132,8 @@ def concert_menu
         end
         puts ''
         puts ''
-        puts "Press 1 to return to main menu"
+        while true do
+        puts "Press 1 to return to main menu or any key to terminate."
         puts ''
         user_response1 = gets.chomp
         case user_response1
@@ -140,7 +141,9 @@ def concert_menu
             puts ''
             puts ''
             puts ''
-           return welcome
+           return welcome 
+        end
+        return welcome
         end
         puts ''
     end
@@ -200,22 +203,25 @@ def artist_menu
             else
                 puts "Invalid Entry"
             end
+            end
+            puts ''
+            puts ''
+            while true do
+            puts "Press 1 to return to main menu or any key to terminate."
+            puts ''
+            user_response1 = gets.chomp
+            case user_response1
+            when '1'
+                puts ''
+                puts ''
+                puts ''
+               return welcome 
+            end
+            return welcome
+            end
+            puts ''
         end
-        puts ''
-        puts ''
-        puts "Press 1 to return to main menu"
-        puts ''
-        user_response = gets.chomp
-        case user_response
-        when '1'
-            puts ''
-            puts ''
-            puts ''
-           return welcome
-        end
-        puts ''
     end
-end
 
 
 def venue_menu
@@ -242,12 +248,8 @@ def venue_menu
         case user_response
         when '1'
             puts ''
-            puts ''
-            puts ''
             puts "Street Address - #{Venue.all[(chosen_venue.to_i) - 1].street_address}"
             puts "Zip Code - #{Venue.all[(chosen_venue.to_i) - 1].zip}"
-            puts ''
-            puts ''
             puts ''
             puts ''
         when '2'
@@ -277,15 +279,18 @@ def venue_menu
         end
         puts ''
         puts ''
-        puts "Press 1 to return to main menu"
+        while true do
+        puts "Press 1 to return to main menu or any key to terminate."
         puts ''
-        user_response = gets.chomp
-        case user_response
+        user_response1 = gets.chomp
+        case user_response1
         when '1'
             puts ''
             puts ''
             puts ''
-           return welcome
+           return welcome 
+        end
+        return welcome
         end
         puts ''
     end
@@ -338,15 +343,20 @@ def statistics_menu
                 puts "Invalid Entry"
             end
         end
-        puts "Press 1 to return to main menu"
         puts ''
-        user_response = gets.chomp
-        case user_response
+        puts ''
+        while true do
+        puts "Press 1 to return to main menu or any key to terminate."
+        puts ''
+        user_response1 = gets.chomp
+        case user_response1
         when '1'
             puts ''
             puts ''
             puts ''
-           return welcome
+           return welcome 
+        end
+        return welcome
         end
         puts ''
     end
