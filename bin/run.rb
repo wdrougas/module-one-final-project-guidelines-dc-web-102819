@@ -21,7 +21,7 @@ I CAN’T LIVE WITHOUT
  puts ''
  puts ColorizedString.new("Welcome to DC Concerts! Your source for shows, artists, and venues in the DC area!").colorize(:red)
  puts ''
- main_menu
+#  main_menu
 end
 
 def exit_app   
@@ -416,3 +416,4 @@ def venues
 end
 
 welcome
+main_menu

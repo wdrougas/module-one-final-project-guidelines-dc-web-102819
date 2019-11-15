@@ -6,7 +6,7 @@ The Flatiron School, Inc. owns this Educational Content. However, the Flatiron S
 
 Flatiron School is willing to allow you access to and use of the Educational Content only on the condition that you accept all of the terms and conditions contained in the Educational Content License set forth [here](http://learn.co/content-license) (http://learn.co/content-license).  By accessing and/or using the Educational Content, you are agreeing to all of the terms and conditions contained in the Educational Content License.  If you do not agree to any or all of the terms of the Educational Content License, you are prohibited from accessing, reviewing or using in any way the Educational Content.
 
-
+https://github.com/fazibear/colorize/
 
 Copyright (C) 2007-2016 Michał Kalbarczyk
 
@@ -27,6 +27,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 Copyright (c) 2015 Piotr Murach
 
+
+https://github.com/piotrmurach/tty-prompt/blob/master/LICENSE.txt
 MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining
